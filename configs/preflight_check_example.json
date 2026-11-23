@@ -1,0 +1,59 @@
+{
+  "schema_version": "cloud_collector_config_v1",
+  "run_id": "PREFLIGHT_EXAMPLE_2024_01",
+  "mode_label": "PREFLIGHT_DRYRUN_EXAMPLE",
+  "universe": {
+    "allowed_symbols": ["BTCUSDT", "ETHUSDT", "SOLUSDT", "BNBUSDT", "XRPUSDT"],
+    "symbols": ["BTCUSDT", "ETHUSDT", "SOLUSDT", "BNBUSDT", "XRPUSDT"]
+  },
+  "streams": ["exec_15m", "mark_1h", "funding_settlement"],
+  "period": {
+    "start_month": "2024-01",
+    "end_month": "2024-01",
+    "requested_start_utc": "2024-01-01T00:00:00Z",
+    "requested_end_exclusive_utc": "2024-02-01T00:00:00Z",
+    "allowed_start_utc": "2021-01-01T00:00:00Z",
+    "oos_forbidden_start_utc": "2025-10-13T00:00:00Z"
+  },
+  "endpoints": {
+    "allowed_hosts": ["data.binance.vision", "fapi.binance.com"],
+    "vision_base_url": "https://data.binance.vision",
+    "fapi_base_url": "https://fapi.binance.com",
+    "fetch_exchange_metadata": true
+  },
+  "network_and_retry": {
+    "connect_timeout_seconds": 10.0,
+    "read_timeout_seconds": 30.0,
+    "max_retries": 3,
+    "retry_backoff_base_seconds": 1.0,
+    "retry_backoff_max_seconds": 30.0,
+    "max_retry_after_seconds": 60.0,
+    "funding_page_limit": 1000,
+    "max_funding_pages_per_month": 5,
+    "max_funding_requests_per_5min": 400,
+    "max_used_weight_1m": 2000
+  },
+  "budgets": {
+    "max_http_requests": 45,
+    "max_compressed_download_bytes": 20971520,
+    "max_single_response_bytes": 8388608,
+    "max_single_uncompressed_bytes": 33554432,
+    "max_total_storage_bytes": 67108864,
+    "max_wall_time_seconds": 300.0,
+    "budget_rationale": "1m x 5sym x 3streams = 15 units; min 27 HTTP calls (2 metadata + 20 Vision + 5 funding pages), max 45 allowing retries; compressed 15m/1h ZIPs fit comfortably under 20 MiB; raw+monthly+merged disk footprint fits under 64 MiB; 300s wall-time cutoff bounds total execution."
+  },
+  "validation": {
+    "expected_timestamp_unit": "ms",
+    "require_settlement_mark_price": true,
+    "assume_fixed_8h_funding": false,
+    "require_archive_checksum": true,
+    "anomalous_funding_interval_warning_hours": 10.0
+  },
+  "governance": {
+    "production_blocked": true,
+    "public_market_data_only": true,
+    "allow_credentials": false,
+    "allow_order_endpoints": false,
+    "allow_paid_services": false
+  }
+}

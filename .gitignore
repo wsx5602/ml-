@@ -1,0 +1,40 @@
+# Secrets, credentials, and environment files
+.env
+.env.*
+*.pem
+*.key
+*secret*
+*credential*
+
+# Python caches and virtual environments
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+*.egg-info/
+dist/
+build/
+
+# Collected market data, runtime states, and archives (never commit raw or refined data)
+outputs/
+collected_data/
+exchange_metadata/
+raw/
+refined/
+checkpoint.json
+manifest.json
+preflight_report.json
+SHA256SUMS.txt
+*.zip
+*.zip.CHECKSUM
+*.tar.gz
+*.tar.gz.sha256
+*.csv
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+
+# Sealed OOS boundary safeguard
+*oos*data*/

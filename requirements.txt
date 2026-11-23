@@ -1,0 +1,4 @@
+# Pinned runtime dependencies for cloud-market-data-collector (v1.2.0)
+# Python >=3.11 required (verified locally on Python 3.13.2).
+# Zero third-party PyPI runtime packages required; pure Python standard library only.
+# This ensures identical offline/cloud behavior across Windows and Linux without PyPI network calls.

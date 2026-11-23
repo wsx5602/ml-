@@ -1,0 +1,14 @@
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cloud-market-data-collector"
+version = "1.2.0"
+description = "Cross-platform public Binance USD-M Futures historical market data collector with fail-closed OOS, checksum, and integrity verification."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.scripts]
+cloud-collector = "collector.cli:main"
